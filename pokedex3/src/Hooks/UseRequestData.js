@@ -14,7 +14,7 @@ export default function useRequestData (innitialState, url){
         }).catch(err=>{
             console.log(err)
         })
-    },[data, url])
+    },[url])
 
     return [data]
 }
