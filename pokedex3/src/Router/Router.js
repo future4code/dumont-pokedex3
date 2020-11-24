@@ -1,7 +1,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import HomePage from '../Screens/HomePage'
 import PokedexPage from '../Screens/PokedexPage'
-import PokemonDetaisPage from '../Screens/PokemonDetaisPage'
+import PokemonDetailsPage from '../Screens/PokemonDetailsPage'
 
 
 export default function Router (){
@@ -12,7 +12,7 @@ export default function Router (){
             <Switch>
                 <Route component={HomePage} exact path={'/'}/>
                 <Route component={PokedexPage} exact path={'/pokedex'}/>
-                <Route component={PokemonDetaisPage} exact path={'/pokemon_details'}/>
+                <Route component={PokemonDetailsPage} exact path={'/pokemon_details'}/>
             </Switch>
         </BrowserRouter>
     )

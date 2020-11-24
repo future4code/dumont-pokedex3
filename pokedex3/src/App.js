@@ -1,10 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
 import Router from './Router/Router';
+import ContextComponents from './ContextComponent/ContextComponent';
+
+
+
 
 function App() {
+
+
   return (
-    <Router/>
+    <ContextComponents>
+      <Router/>
+    </ContextComponents>
   );
 }
 
