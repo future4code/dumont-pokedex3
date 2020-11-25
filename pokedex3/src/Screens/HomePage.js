@@ -1,20 +1,32 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import Header from '../Components/Header/Header'
 import ContextPokemons from '../Contexts/ContextPokemons'
+import CardPokemon from '../Components/CardPokemon/CardPokemon'
+import {Div, MainDiv} from './styles'
 
 
 export default function HomePage() {
 
-  const {data, nextRequest} = useContext(ContextPokemons)
-  //console.log(nextRequest)
+  const {data, getMorePokemons} = useContext(ContextPokemons)
+  
  return (
-   <div>
+   <MainDiv>
       <Header/>
+
+   <Div>
       
       {data && data.map(pokemon=>{
-        return <p>{pokemon.name}, {pokemon.id}</p>
+        return <CardPokemon key={pokemon.id}
+        color={pokemon.color}
+        name={pokemon.name}
+        id={pokemon.id}
+        type={pokemon.type}
+        image={pokemon.image_front}
+        />
+       
       })}
-
-   </div>
+   </Div>
+    <button onClick={getMorePokemons}>more</button>
+   </MainDiv>
   );
 }

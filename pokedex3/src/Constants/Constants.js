@@ -1,4 +1,4 @@
-
+import axios from 'axios'
 
 export const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/'
 
@@ -32,4 +32,93 @@ export const palletaCores = {
      blue : {primary:'#05DBF2', light: '#6cffff', dark: '#00a9bf', text:'#000000'},
      purple : {primary:'#451659', light: '#734186', dark: '#1f002f', text:'#ffffff'},
      black :  {primary:'#232323', light: '#30333A', dark: '#020202', text:'#ffffff'}
+}
+
+//usage:
+ //getMorePokemons = (newRequest, setNewRequest, setPokemons)
+
+export const getMorePokemons = (newRequest, setNewRequest, setPokemons)=>{
+    axios.get(newRequest).then(response=>{
+     setNewRequest(response.data.next)
+     const array = response.data.results.map(objeto=>{
+         axios.get(objeto.url).then(response=>{
+             let pokemonObj = {
+                 id: response.data.id,
+                 name: response.data.name,
+                 height: response.data.height,
+                 weight: response.data.weight,
+                 image_front: response.data.sprites.other.dream_world.front_default,
+                 type: response.data.types[0].type.name,
+                 moves: response.data.moves,
+                 color: selectColorByType(response.data.types[0].type.name, palletaCores)
+                 }
+                 response.data.stats.forEach(stat=>{
+                 pokemonObj[stat.stat.name]=[stat.base_stat]
+                 })
+                 setPokemons(pokemons=> [...pokemons, pokemonObj])
+             })
+     })
+ }).catch(err=>{
+     //console.log(err)
+ })
+   
+}
+
+export const selectColorByType = (type, palletaCores)=>{
+    let color
+                        switch (type) {
+                            case 'electric':
+                                color = palletaCores.yellow.primary
+                                break;
+                            case 'grass':
+                                color = palletaCores.green.primary
+                                break;
+                            case 'water':
+                                color = palletaCores.blue.primary
+                                break;
+                            case 'steel':
+                                color = palletaCores.black.primary
+                                break;
+                            case 'rock':
+                                color = '#4D3B37'
+                                break;
+                            case 'poison':
+                                color = palletaCores.purple.primary
+                                break;
+                            case 'fire':
+                                color = palletaCores.red.light
+                                break;
+                            case 'ground':
+                                color = '#4D3B37'
+                                break;
+                            case 'normal':
+                                color = palletaCores.black.light
+                                break;
+                            case 'flying':
+                                color = palletaCores.blue.light
+                                break;
+                            case 'bug':
+                                color = palletaCores.green.light
+                                break;
+                            case 'psychic':
+                                color = palletaCores.yellow.light
+                                break;
+                            case 'ice':
+                                color = palletaCores.blue.light
+                                break;
+                            case 'dragon':
+                                color = palletaCores.red.primary
+                                break;
+                            case 'fairy':
+                                color = palletaCores.red.light
+                                break;
+                            case 'dragon':
+                                color = palletaCores.red.primary
+                                break;
+                            default:
+                                color = palletaCores.black.light
+                                break;
+                        }
+
+    return color
 }
