@@ -16,8 +16,8 @@ export default function CardPokemon(props) {
           <TypeContainer color={props.color}>
             {props.type}
           </TypeContainer>
-         <ButtonPrimary >
-              Get it!
+         <ButtonPrimary onClick={props.onClickPokeball}>
+             {props.messageButton}
            <ImageButton src={pokeball}/>
          </ButtonPrimary>
           

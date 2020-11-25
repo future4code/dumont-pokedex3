@@ -11,6 +11,7 @@ function ContextComponents(props) {
     const [data, nextRequest] = useRequestData(`${BASE_URL}?limit=10`)
     const [pokemons, setPokemons] = useState([])
     const [newRequest, setNewRequest] = useState('')
+    const [myPokedex, setMyPokedex] = useState([])
 
     useEffect(() => {
       setPokemons(data)
@@ -48,7 +49,9 @@ function ContextComponents(props) {
     const informations = {
       data : pokemons,
       nextRequest: newRequest,
-      getMorePokemons: getMorePokemons
+      getMorePokemons: getMorePokemons,
+      setMyPokedex: setMyPokedex,
+      myPokedex: myPokedex
     }
          
     return (
