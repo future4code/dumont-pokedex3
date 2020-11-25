@@ -29,6 +29,9 @@ export default function useRequestData (url){
                         response.data.stats.forEach(stat=>{
                         pokemonObj[stat.stat.name]=[stat.base_stat]
                         })
+                        axios.get(`https://pokeapi.co/api/v2/pokemon-species/${response.data.id}`).then(res=>{
+                            pokemonObj['evolution_chain'] = res.data.evolution_chain.url
+                        })
                         setArrayPokemon(arrayPokemon=> [...arrayPokemon, pokemonObj])
                     })
             })

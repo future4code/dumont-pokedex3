@@ -36,34 +36,6 @@ export const palletaCores = {
 
 //usage:
  //getMorePokemons = (newRequest, setNewRequest, setPokemons)
-
-export const getMorePokemons = (newRequest, setNewRequest, setPokemons)=>{
-    axios.get(newRequest).then(response=>{
-     setNewRequest(response.data.next)
-     const array = response.data.results.map(objeto=>{
-         axios.get(objeto.url).then(response=>{
-             let pokemonObj = {
-                 id: response.data.id,
-                 name: response.data.name,
-                 height: response.data.height,
-                 weight: response.data.weight,
-                 image_front: response.data.sprites.other.dream_world.front_default,
-                 type: response.data.types[0].type.name,
-                 moves: response.data.moves,
-                 color: selectColorByType(response.data.types[0].type.name, palletaCores)
-                 }
-                 response.data.stats.forEach(stat=>{
-                 pokemonObj[stat.stat.name]=[stat.base_stat]
-                 })
-                 setPokemons(pokemons=> [...pokemons, pokemonObj])
-             })
-     })
- }).catch(err=>{
-     //console.log(err)
- })
-   
-}
-
 export const selectColorByType = (type, palletaCores)=>{
     let color
                         switch (type) {
