@@ -1,12 +1,27 @@
-import React from 'react';
+import React from 'react'
+import {Image, Div, Name, TitleContainer,TypeContainer, ButtonContainer, ImageButton, ButtonPrimary} from './Styled'
+import pokeball from '../../img/pokeball.png'
+import { useHistory} from 'react-router-dom'
 
-export default function CardPokemon() {
+export default function CardPokemon(props) {
+  const history = useHistory()
   return (
-    <div>
-        <h3>nome</h3>
-        <img src="#" alt="imagemPokemon"/>
-        <button>Add Pokedex</button>
-        <button>Ver Status</button>
-    </div>
+    <Div >
+      <TitleContainer>
+        <Name>{props.name}</Name>
+        <Name>#0{props.id}</Name>
+      </TitleContainer>
+        <Image onClick={()=> history.push(`/pokemon_details/${props.id}`)} src={props.image} alt={props.name}/>
+        <ButtonContainer>
+          <TypeContainer color={props.color}>
+            {props.type}
+          </TypeContainer>
+         <ButtonPrimary >
+              Get it!
+           <ImageButton src={pokeball}/>
+         </ButtonPrimary>
+          
+        </ButtonContainer>
+    </Div>
   );
 }

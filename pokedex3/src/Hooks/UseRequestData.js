@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios'
+import {palletaCores, selectColorByType }from '../Constants/Constants'
 
 
 
-export default function useRequestData (innitialState, url){
+export default function useRequestData (url){
 
-    const [data, setData]= useState(innitialState)
+    
     const [arrayPokemon, setArrayPokemon] = useState([])
     const [nextRequest, setNextResquest] = useState('')
 
@@ -21,8 +22,9 @@ export default function useRequestData (innitialState, url){
                         height: response.data.height,
                         weight: response.data.weight,
                         image_front: response.data.sprites.other.dream_world.front_default,
-                        type1: response.data.types[0].type.name,
-                        moves: response.data.moves
+                        type: response.data.types[0].type.name,
+                        moves: response.data.moves,
+                        color: selectColorByType(response.data.types[0].type.name, palletaCores)
                         }
                         response.data.stats.forEach(stat=>{
                         pokemonObj[stat.stat.name]=[stat.base_stat]

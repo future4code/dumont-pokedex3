@@ -1,8 +1,6 @@
 import './App.css';
 import Router from './Router/Router';
-import ContextComponents from './ContextComponent/ContextComponent';
-
-
+import ContextComponents from './Global/ContextComponent';
 
 
 function App() {
