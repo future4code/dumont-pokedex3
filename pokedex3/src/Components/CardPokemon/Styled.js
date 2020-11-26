@@ -15,8 +15,8 @@ export const Image= styled.img`
 `
 export const Div = styled.div`
 
-    height: 180px;
-    width: 180px;
+    height: 250px;
+    width: 250px;
     background-color: ${black.primary};
     box-shadow: 5px 5px 0px ${black.dark};
     display: flex;
@@ -31,6 +31,10 @@ export const Div = styled.div`
     &:hover{
         opacity: 100%;
     }
+    @media screen and (max-width: 700px){
+        height: 180px;
+        width: 180px; 
+  }
 
 
 `

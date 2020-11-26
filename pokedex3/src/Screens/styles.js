@@ -149,6 +149,12 @@ export const MovesContainer = styled(ImageContainer)`
    width: 350px;
    height: 560px;
    margin-top: 35px;
+   @media screen and (max-width: 700px){
+
+    width: 350px;
+    height: 200px;
+    margin-top: 30px;
+}
   
   
 
