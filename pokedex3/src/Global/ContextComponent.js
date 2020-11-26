@@ -8,7 +8,7 @@ import {selectColorByType, palletaCores} from '../Constants/Constants'
 
 function ContextComponents(props) {
     
-    const [data, nextRequest] = useRequestData(`${BASE_URL}?limit=10`)
+    const [data, nextRequest] = useRequestData(`${BASE_URL}?limit=20`)
     const [pokemons, setPokemons] = useState([])
     const [newRequest, setNewRequest] = useState('')
     const [myPokedex, setMyPokedex] = useState([])
@@ -31,11 +31,14 @@ function ContextComponents(props) {
                    weight: response.data.weight,
                    image_front: response.data.sprites.other.dream_world.front_default,
                    type: response.data.types[0].type.name,
+                   type2: response.data.types[1] && response.data.types[1].type.name,
                    moves: response.data.moves,
+                   stats: [],
                    color: selectColorByType(response.data.types[0].type.name, palletaCores)
                    }
                    response.data.stats.forEach(stat=>{
-                   pokemonObj[stat.stat.name]=[stat.base_stat]
+                      const statis = {'name': [stat.stat.name], 'value': [stat.base_stat]}
+                      pokemonObj.stats.push(statis)
                    })
                    setPokemons(pokemons=> [...pokemons, pokemonObj])
                })
@@ -45,8 +48,9 @@ function ContextComponents(props) {
    })
      
   }
+   
     
-    const informations = {
+  const informations = {
       data : pokemons,
       nextRequest: newRequest,
       getMorePokemons: getMorePokemons,

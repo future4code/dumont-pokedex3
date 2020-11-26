@@ -8,11 +8,15 @@ export const Image= styled.img`
     width: 150px; 
     z-index : 3;
     cursor: pointer;
+    @media screen and (max-width: 700px){
+        height: 100px;
+        width: 100px; 
+  }
 `
 export const Div = styled.div`
 
-    height: 250px;
-    width: 250px;
+    height: 180px;
+    width: 180px;
     background-color: ${black.primary};
     box-shadow: 5px 5px 0px ${black.dark};
     display: flex;
@@ -75,6 +79,12 @@ export const TypeContainer = styled.div`
      font-weight: bold;
      letter-spacing: 1px;
      font-size: 14px;
+     @media screen and (max-width: 700px){
+        height: 10px;
+        width: 60px; 
+        font-size: 10px;
+  }
+     
 
 `
 export const ButtonPrimary = styled.button`
@@ -88,6 +98,7 @@ export const ButtonPrimary = styled.button`
     background-color: transparent;
     color: whitesmoke;
     font-size: small;
+    z-index: 4;
 `
 
 export const ImageButton = styled.img`

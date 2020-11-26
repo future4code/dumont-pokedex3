@@ -36,7 +36,7 @@ export default function PokedexPage() {
         type={pokemon.type}
         image={pokemon.image_front}
         onClickPokeball={()=>RemovePokemonToList(pokemon)}
-        messageButton='Release it'
+        messageButton='Let go'
         />
       })}
    </Div>

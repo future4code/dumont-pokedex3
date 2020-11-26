@@ -11,7 +11,7 @@ export default function CardPokemon(props) {
         <Name>{props.name}</Name>
         <Name>#0{props.id}</Name>
       </TitleContainer>
-        <Image onClick={()=> history.push(`/pokemon_details/${props.id}`)} src={props.image} alt={props.name}/>
+        <Image onClick={()=> history.push(`/pokemon_details/${props.name}`)} src={props.image} alt={props.name}/>
         <ButtonContainer>
           <TypeContainer color={props.color}>
             {props.type}

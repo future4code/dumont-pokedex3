@@ -14,13 +14,21 @@ export const TopMenu = styled.nav`
   padding-right: 20px;
   top: 0;
   left: 0;
+  z-index: 3;
   box-shadow: 5px 8px 0px ${purple.dark};
+  @media screen and (max-width: 700px){
+    width: 92%;
+    padding-right: 10px;
+  }
 `
 
 export const Title = styled.h1`
   text-transform: uppercase;
   font-size: 40px;
   color: white;
+  @media screen and (max-width: 700px){
+    font-size: 20px;
+  }
   
 `
 
@@ -28,6 +36,10 @@ export const Logo = styled.img`
   width: 60px;
   height: 60px; 
   margin-right: 15px;
+  @media screen and (max-width: 700px){
+    width: 40px;
+  height: 40px; 
+  }
 `
 
 export const LogoContainer = styled.div`
@@ -43,4 +55,7 @@ export const PokedexButton = styled.button`
   box-shadow: 5px 5px 0px ${purple.dark};
   cursor: pointer;
   outline: none;
+  @media screen and (max-width: 700px){
+    padding: 5px;
+  }
 `

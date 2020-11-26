@@ -12,7 +12,7 @@ export default function Router (){
             <Switch>
                 <Route component={HomePage} exact path={'/'}/>
                 <Route component={PokedexPage} exact path={'/pokedex'}/>
-                <Route component={PokemonDetailsPage} exact path={'/pokemon_details/:idPokemon'}/>
+                <Route component={PokemonDetailsPage} exact path={'/pokemon_details/:Pokemon'}/>
             </Switch>
         </BrowserRouter>
     )

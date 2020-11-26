@@ -49,11 +49,14 @@ export const getMorePokemons = (newRequest, setNewRequest, setPokemons)=>{
                  weight: response.data.weight,
                  image_front: response.data.sprites.other.dream_world.front_default,
                  type: response.data.types[0].type.name,
+                 type2: response.data.types[1] && response.data.types[1].type.name,
                  moves: response.data.moves,
+                 stats: [],
                  color: selectColorByType(response.data.types[0].type.name, palletaCores)
                  }
                  response.data.stats.forEach(stat=>{
-                 pokemonObj[stat.stat.name]=[stat.base_stat]
+                    const statis = {'name': [stat.stat.name], 'value': [stat.base_stat]}
+                    pokemonObj.stats.push(statis)
                  })
                  setPokemons(pokemons=> [...pokemons, pokemonObj])
              })
