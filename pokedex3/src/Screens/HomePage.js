@@ -18,7 +18,7 @@ export default function HomePage() {
       alert(`${newPokemon.name.toUpperCase()} Ja foi Capturado!`)
     }
   }
-  console.log(myPokedex)
+ 
  return (
    <MainDiv>
       <Header

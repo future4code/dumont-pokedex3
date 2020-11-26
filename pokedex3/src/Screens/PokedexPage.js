@@ -20,7 +20,7 @@ export default function PokedexPage() {
     })
     setMyPokedex(newPokedex)
   }
-  console.log(myPokedex)
+  
  return (
    <MainDiv>
       <Header

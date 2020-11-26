@@ -36,14 +36,13 @@ export default function PokemonDetaisPage(props) {
         const selectedPokemon = data.filter(pokemon=>{
             return pokemon.name === pathParams.Pokemon
         })
-        console.log(selectedPokemon)
         setPokemon(selectedPokemon[0])
         getEvolutions()
     }, [data])
 
     
     
-    console.log(chain)
+    
 
 
   return (
