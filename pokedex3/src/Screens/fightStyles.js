@@ -72,7 +72,7 @@ export const FightButton = styled(PokedexButton)`
         align-self: flex-end;
         position: absolute;
         bottom: 10px;
-        left: 60px;
+        left: 30px;
         width: 300px;
         
     }

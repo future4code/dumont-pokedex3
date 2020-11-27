@@ -7,7 +7,7 @@ export const PokemonContainer = styled(ImageContainer)`
    
     @media screen and (max-width: 700px){
 
-        width: 180px;
+        width: 160px;
         height: 280px;
         margin-top: 30px;
         align-self: flex-start;
