@@ -17,7 +17,9 @@ export const TopMenu = styled.nav`
   z-index: 3;
   box-shadow: 5px 8px 0px ${purple.dark};
   @media screen and (max-width: 700px){
+    flex-flow: row wrap;
     width: 92%;
+    height: 100px;
     padding-right: 10px;
   }
 `

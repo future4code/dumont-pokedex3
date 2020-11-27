@@ -24,7 +24,7 @@ export default function PokemonDetaisPage(props) {
                 const chain = {
                     first: response.data.chain.species.name,
                     second: response.data.chain.evolves_to[0] && response.data.chain.evolves_to[0].species.name,
-                    third: response.data.chain.evolves_to[0].evolves_to[0] && response.data.chain.evolves_to[0].evolves_to[0].species.name
+                    third: response.data.chain.evolves_to[0] && response.data.chain.evolves_to[0].evolves_to[0] && response.data.chain.evolves_to[0].evolves_to[0].species.name
                     }
           setChain(chain)
             })

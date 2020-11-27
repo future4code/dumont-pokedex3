@@ -10,11 +10,7 @@ export default function PokedexPage() {
   const { myPokedex, setMyPokedex} = useContext(ContextPokemons)
 
   const RemovePokemonToList = (newPokemon) => {
-    // const PokemonPosition = myPokedex.findIndex((i) => i.id === newPokemon.id)
-    // if (PokemonPosition > -1) {
-    //   setMyPokedex(myPokedex=> myPokedex.splice(PokemonPosition, 1))
-    //   alert(`${newPokemon.name.toUpperCase()} Libertado Com Sucesso!`)
-    // }
+   
     const newPokedex = myPokedex.filter(pokemon=>{
       return pokemon.id !== newPokemon.id
     })
