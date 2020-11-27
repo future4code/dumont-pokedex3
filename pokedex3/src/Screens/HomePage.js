@@ -34,7 +34,7 @@ export default function HomePage() {
   
     // window.addEventListener('scroll', ()=>{
     //   const {scrollTop, scrollHeight, clientHeight} = document.documentElement
-    //   if (scrollTop + clientHeight >= scrollHeight && controlRequest() ) {
+    //   if (scrollTop + clientHeight >= scrollHeight &&  ) {
     //     getMorePokemons();
     //     console.log('bottom')
     //   }

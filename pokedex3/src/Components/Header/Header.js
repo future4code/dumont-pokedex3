@@ -13,6 +13,7 @@ export default function Header(props) {
             <Title> Pokedex</Title>
           </LogoContainer>
           <LogoContainer>
+          <PokedexButton  onClick={()=> history.push('/fight')}>Fight Arena</PokedexButton>
             <PokedexButton  onClick={()=> history.push('/pokedex')}>My Pokedex</PokedexButton>
             {props.pokelist && <PokedexButton  onClick={()=> history.push('/')}>Back</PokedexButton>}
           </LogoContainer>

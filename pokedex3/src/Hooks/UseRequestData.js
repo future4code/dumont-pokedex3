@@ -26,6 +26,7 @@ export default function useRequestData (url){
                         height: response.data.height,
                         weight: response.data.weight,
                         image_front: response.data.sprites.other.dream_world.front_default,
+                        image_pixel: response.data.sprites.front_default,
                         type: response.data.types[0].type.name,
                         type2: response.data.types[1] && response.data.types[1].type.name,
                         moves: [],
