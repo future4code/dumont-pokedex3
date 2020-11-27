@@ -6,9 +6,18 @@ import {Div, MainDiv, ButtonFooter} from './styles'
 import KeyboardArrowDownRoundedIcon from '@material-ui/icons/KeyboardArrowDownRounded';
 
 export default function HomePage() {
-
+  const [count, setCount] = useState(0)
   const {data, getMorePokemons, myPokedex, setMyPokedex} = useContext(ContextPokemons)
+  
 
+  // const controlRequest = ()=>{
+  //   if(data.length - count === 20){
+  //     setCount(count + 20)
+  //     return true
+  //   }else{
+  //     return false
+  //   }
+  // }
   const addPokemonToList = (newPokemon) => {
     const PokemonPosition = myPokedex.findIndex((i) => i.id === newPokemon.id)
     if (PokemonPosition === -1) {
@@ -18,14 +27,28 @@ export default function HomePage() {
       alert(`${newPokemon.name.toUpperCase()} Ja foi Capturado!`)
     }
   }
+
+  console.log(data.length)
+  
+
+  
+    // window.addEventListener('scroll', ()=>{
+    //   const {scrollTop, scrollHeight, clientHeight} = document.documentElement
+    //   if (scrollTop + clientHeight >= scrollHeight && controlRequest() ) {
+    //     getMorePokemons();
+    //     console.log('bottom')
+    //   }
+    // })
+    
+
  
  return (
-   <MainDiv>
+   <MainDiv >
       <Header
       pokelist={false}
       />
 
-   <Div>
+   <Div id='main'>
       
       {data && data.map(pokemon=>{
         return <CardPokemon key={pokemon.id}

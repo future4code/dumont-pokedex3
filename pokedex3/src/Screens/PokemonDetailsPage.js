@@ -41,9 +41,6 @@ export default function PokemonDetaisPage(props) {
     }, [data])
 
     
-    
-    
-
 
   return (
       <MainDetails>
@@ -67,7 +64,7 @@ export default function PokemonDetaisPage(props) {
                 
                 <h2>{pokemon.type}</h2> 
                 <h2>{pokemon.type2}</h2>
-                 </TypeContainer>
+        </TypeContainer>
             <div>
                 {pokemon.stats && pokemon.stats.map(stat=>{
                         let color;
@@ -93,13 +90,31 @@ export default function PokemonDetaisPage(props) {
         </StatContainer>
        
             <MovesContainer>
+                <TypeContainer color={pokemon.color} >
+                    <PokemonName>
+                        Moves
+                    </PokemonName>
+                </TypeContainer>
                {pokemon.moves && pokemon.moves.map((move, idx)=>{
-                   if(idx > 3){
-                       return ''
+                   let color;
+                   if(move.power > 80){
+                       color = '#F52C33'
+                   }else if(move.power > 60 && move.power <= 80 ){
+                       color = '#00a9bf'
+                   }else if(move.power > 40 && move.power <= 60){
+                       color = '#F2DA5E'
+                   }else if(move.power > 10 && move.power <= 40){
+                       color = '#498e2c'
                    }else{
-                       return <p>{move.move.name}</p>
+                       color = '#451659'
                    }
-               })}
+               
+
+               return <div key={move.name}>
+                           <label htmlFor='stat'>{move.name}: {move.power === null?'0':  move.power}</label><br/>
+                           <StatBar color={color} id='stat' value={move.power} max="250">{move.power}</StatBar>
+                       </div>
+           })}
             </MovesContainer>
     </MainContainer>
     <InfoContainer>

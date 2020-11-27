@@ -28,10 +28,21 @@ export default function useRequestData (url){
                         image_front: response.data.sprites.other.dream_world.front_default,
                         type: response.data.types[0].type.name,
                         type2: response.data.types[1] && response.data.types[1].type.name,
-                        moves: response.data.moves,
+                        moves: [],
                         stats: [],
                         color: selectColorByType(response.data.types[0].type.name, palletaCores)
                         }
+                        response.data.moves.forEach((move, idx)=>{
+                            if(idx <= 5){
+
+                                axios.get(move.move.url).then(response=>{
+                                    const obj = {'name':[move.move.name], 'power': [response.data.power]}
+                                    pokemonObj.moves.push(obj)
+                                    }).catch(err=>{
+                                      
+                                    })
+                              }
+                        })
                         response.data.stats.forEach(stat=>{
                             const statis = {'name': [stat.stat.name], 'value': [stat.base_stat]}
                             pokemonObj.stats.push(statis)
