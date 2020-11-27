@@ -9,8 +9,9 @@ export const Div = styled.div`
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
- 
-    
+    @media screen and (max-width: 700px){
+        margin-top: 20px;
+  }
 
 `
 
@@ -116,6 +117,8 @@ export const InfoContainer = styled(ImageContainer)`
 
    width: 770px;
    height: 100px;
+   display: flex;
+   flex-direction: row;
    margin-top: -150px;
    align-self: flex-start;
    margin-left: 115px;
@@ -126,6 +129,10 @@ export const InfoContainer = styled(ImageContainer)`
    margin-top: 0px;
    align-self: center;
    margin-left: 0px;
+   font-size: 15px;
+   &.chain{
+       font-size: 5px;
+   }
 }
 
 `
@@ -210,5 +217,16 @@ export const SizesContainer = styled.div`
 export const PokemonName = styled.h1`
 
     margin-bottom: -20px;
+   
+`
+export const EvolutionName = styled.h3`
+
+    margin-top: -20px;
+    margin-right: 10px;
+    cursor: pointer;
+    @media screen and (max-width: 700px){
+        font-size: 14px;
+
+    }
 
 `

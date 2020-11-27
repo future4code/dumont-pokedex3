@@ -9,8 +9,8 @@ export const Image= styled.img`
     z-index : 3;
     cursor: pointer;
     @media screen and (max-width: 700px){
-        height: 100px;
-        width: 100px; 
+        height: 80px;
+        width: 80px; 
   }
 `
 export const Div = styled.div`
@@ -32,8 +32,8 @@ export const Div = styled.div`
         opacity: 100%;
     }
     @media screen and (max-width: 700px){
-        height: 180px;
-        width: 180px; 
+        height: 150px;
+        width: 150px; 
   }
 
 
@@ -58,15 +58,19 @@ export const TitleContainer = styled.div`
     padding-right: 20px;
     background-color: ${red.dark};
     box-shadow: 0px 5px 5px rgba(255,255,255,0.2);
+    @media screen and (max-width: 700px){
+        height: 25px;
+         
+  }
 `
 
 export const ButtonContainer = styled.div`
     position: absolute;
     bottom: 3px;
-    left: 0px;
+    left: 5px;
     display: flex;
     justify-content: space-between;
-    width: 95%;
+    width: 100%;
     align-items: flex-end;
 `
 export const TypeContainer = styled.div`

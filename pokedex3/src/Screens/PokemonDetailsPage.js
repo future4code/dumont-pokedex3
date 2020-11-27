@@ -1,12 +1,21 @@
 import React, {useEffect, useState, useContext,} from 'react';
-import {SizesContainer,StatBar, MainDetails, MainContainer, ImageContainer,
-Image, StatContainer, InfoContainer, TypeContainer, MovesContainer,
-IdContainer, PokemonName} 
-from './styles'
 import Header from '../Components/Header/Header'
-import {useParams} from 'react-router-dom'
+import {useParams, useHistory} from 'react-router-dom'
 import ContextPokemons from '../Contexts/ContextPokemons';
-import axios from 'axios'
+import {getEvolutions} from '../Constants/Constants'
+import {SizesContainer,
+        StatBar, 
+        MainDetails, 
+        MainContainer, 
+        ImageContainer,
+        Image, 
+        StatContainer, 
+        InfoContainer, 
+        TypeContainer, 
+        MovesContainer,
+        IdContainer, 
+        PokemonName,
+        EvolutionName} from './styles'
 
 
 
@@ -16,20 +25,8 @@ export default function PokemonDetaisPage(props) {
     const pathParams = useParams()
     const [pokemon, setPokemon] = useState({})
     const [chain, setChain]= useState({})
-
-    const getEvolutions = ()=>{
-        const url = `https://pokeapi.co/api/v2/pokemon-species/${pathParams.Pokemon}`
-        axios.get(url).then(response=>{
-            axios.get(response.data.evolution_chain.url).then(response=>{
-                const chain = {
-                    first: response.data.chain.species.name,
-                    second: response.data.chain.evolves_to[0] && response.data.chain.evolves_to[0].species.name,
-                    third: response.data.chain.evolves_to[0] && response.data.chain.evolves_to[0].evolves_to[0] && response.data.chain.evolves_to[0].evolves_to[0].species.name
-                    }
-          setChain(chain)
-            })
-        })
-    }
+    const [imageChain, setImageChain]= useState({})
+    const history = useHistory()
 
     useEffect(()=>{
         
@@ -37,12 +34,28 @@ export default function PokemonDetaisPage(props) {
             return pokemon.name === pathParams.Pokemon
         })
         setPokemon(selectedPokemon[0])
-        getEvolutions()
-    }, [data])
+        getEvolutions(pathParams.Pokemon, setChain)
+        getImageChain()
+    }, [data, pathParams.Pokemon, chain])
 
-    
-
+    const getImageChain = ()=>{
+        let first;
+        let second;
+        let third;
+        data.forEach(pokemon=>{
+            if(pokemon.name === chain.first){
+                first = pokemon.image_pixel
+            }else if(pokemon.name === chain.second){
+                second = pokemon.image_pixel
+            }else if(pokemon.name === chain.third){
+                third = pokemon.image_pixel
+            }
+            setImageChain({first: first, second: second, third: third})
+        })
+    }
+  console.log(imageChain)
   return (
+
       <MainDetails>
         <Header
          pokelist={true}
@@ -118,7 +131,18 @@ export default function PokemonDetaisPage(props) {
             </MovesContainer>
     </MainContainer>
     <InfoContainer>
-        {chain.first}/ {chain.second}/ {chain.third}
+        <div>
+            <img  src={imageChain.first} alt=""/>
+            <EvolutionName onClick={()=>history.push(`/pokemon_details/${chain.first}`)}>{chain.first} </EvolutionName>
+        </div>
+        <div>
+            <img src={imageChain.second} alt=""/>
+            <EvolutionName onClick={()=>history.push(`/pokemon_details/${chain.second}`)}>{chain.second}  </EvolutionName>
+        </div>
+        <div>
+            <img src={imageChain.third} alt=""/>
+            <EvolutionName onClick={()=>history.push(`/pokemon_details/${chain.third}`)}>{chain.third}</EvolutionName>
+        </div>
     </InfoContainer>
     </MainDetails>
   );

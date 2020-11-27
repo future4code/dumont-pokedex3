@@ -34,6 +34,20 @@ export const palletaCores = {
      black :  {primary:'#232323', light: '#30333A', dark: '#020202', text:'#ffffff'}
 }
 
+export const getEvolutions = (name, setFunction)=>{
+    const url = `https://pokeapi.co/api/v2/pokemon-species/${name}`
+    axios.get(url).then(response=>{
+        axios.get(response.data.evolution_chain.url).then(response=>{
+            const chain = {
+                first: response.data.chain.species.name,
+                second: response.data.chain.evolves_to[0] && response.data.chain.evolves_to[0].species.name,
+                third: response.data.chain.evolves_to[0] && response.data.chain.evolves_to[0].evolves_to[0] && response.data.chain.evolves_to[0].evolves_to[0].species.name
+                }
+      setFunction(chain)
+        })
+    })
+}
+
 //usage:
  //getMorePokemons = (newRequest, setNewRequest, setPokemons)
 
