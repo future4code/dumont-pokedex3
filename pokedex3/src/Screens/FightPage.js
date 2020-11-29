@@ -57,7 +57,7 @@ export default function FightPage() {
             setSelectedOponent([defaultObj]) 
         }
 
-    },[yourPokemon, oponentPokemon, data])
+    },[yourPokemon, oponentPokemon, data, myPokedex])
 
     const getWinner = ()=>{
 
