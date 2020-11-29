@@ -28,10 +28,15 @@ export default function HomePage() {
     }
   }
 
-  console.log(data.length)
+  useEffect(()=>{
+    if(myPokedex.length > 0){
+      
+      localStorage.setItem('pokedex', JSON.stringify(myPokedex))
+      
+    }
+  }, [myPokedex])
   
 
-  
     // window.addEventListener('scroll', ()=>{
     //   const {scrollTop, scrollHeight, clientHeight} = document.documentElement
     //   if (scrollTop + clientHeight >= scrollHeight &&  ) {

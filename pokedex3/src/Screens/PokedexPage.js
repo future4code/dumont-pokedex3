@@ -16,6 +16,13 @@ export default function PokedexPage() {
     })
     setMyPokedex(newPokedex)
   }
+  useEffect(()=>{
+    if(myPokedex.length > 0){
+      
+      localStorage.setItem('pokedex', JSON.stringify(myPokedex))
+      
+    }
+  }, [myPokedex])
   
  return (
    <MainDiv>

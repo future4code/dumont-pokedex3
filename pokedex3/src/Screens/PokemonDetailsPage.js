@@ -21,7 +21,7 @@ import {SizesContainer,
 
 export default function PokemonDetaisPage(props) {
 
-    const {data} = useContext(ContextPokemons)
+    const {data, myPokedex} = useContext(ContextPokemons)
     const pathParams = useParams()
     const [pokemon, setPokemon] = useState({})
     const [chain, setChain]= useState({})
@@ -30,13 +30,21 @@ export default function PokemonDetaisPage(props) {
 
     useEffect(()=>{
         
-        const selectedPokemon = data.filter(pokemon=>{
+        let selectedPokemon = data.filter(pokemon=>{
             return pokemon.name === pathParams.Pokemon
         })
-        setPokemon(selectedPokemon[0])
+        if(selectedPokemon.length > 0){
+
+            setPokemon(selectedPokemon[0])
+        }else{
+            selectedPokemon = myPokedex.filter(pokemon=>{
+                return pokemon.name === pathParams.Pokemon
+            })
+            setPokemon(selectedPokemon[0])
+        }
         getEvolutions(pathParams.Pokemon, setChain)
         getImageChain()
-    }, [data, pathParams.Pokemon, chain])
+    }, [data, pathParams.Pokemon, chain, myPokedex])
 
     const getImageChain = ()=>{
         let first;
@@ -53,7 +61,7 @@ export default function PokemonDetaisPage(props) {
             setImageChain({first: first, second: second, third: third})
         })
     }
-  console.log(imageChain)
+  
   return (
 
       <MainDetails>
@@ -133,7 +141,8 @@ export default function PokemonDetaisPage(props) {
     <InfoContainer>
         <div>
             <img  src={imageChain.first} alt=""/>
-            <EvolutionName onClick={()=>history.push(`/pokemon_details/${chain.first}`)}>{chain.first} </EvolutionName>
+
+            <EvolutionName  onClick={()=>history.push(`/pokemon_details/${chain.first}`)}>{chain.first} </EvolutionName>
         </div>
         <div>
             <img src={imageChain.second} alt=""/>

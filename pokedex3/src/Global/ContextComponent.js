@@ -16,6 +16,11 @@ function ContextComponents(props) {
     useEffect(() => {
       setPokemons(data)
       setNewRequest(nextRequest)
+      if(localStorage.getItem('pokedex')){
+        setMyPokedex(JSON.parse(localStorage.getItem('pokedex')))
+      }else{
+        localStorage.setItem('pokedex', JSON.stringify(myPokedex))
+      }
     }, [data])
 
     

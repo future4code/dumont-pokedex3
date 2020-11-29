@@ -18,7 +18,7 @@ import {SelectContainer,
 
 export default function FightPage() {
 
-    const { data } = useContext(ContextPokemons)
+    const { data , myPokedex} = useContext(ContextPokemons)
 
     const defaultObj = { 
         name: 'Select Fighter',
@@ -41,7 +41,7 @@ export default function FightPage() {
     useEffect(()=>{
         if(yourPokemon){
             
-            const fighter = data.filter(pokemon=>{
+            const fighter = myPokedex.filter(pokemon=>{
                 return pokemon.name === yourPokemon
             })
              setSelectedFighter(fighter)
@@ -64,8 +64,6 @@ export default function FightPage() {
         let fighterPoints = 0
         let oponentPoints = 0
 
-        console.log(selectedFighter[0].stats)
-
         for(let item of selectedFighter[0].stats){
             fighterPoints += Number(item.value)
         }
@@ -75,18 +73,18 @@ export default function FightPage() {
 
         if(fighterPoints > oponentPoints && oponentPoints > 0){
 
-            alert(`${yourPokemon.toUpperCase()} Won the Battle! ${fighterPoints +' Vs '+ oponentPoints} `)
+            alert(`${yourPokemon.toUpperCase()} Won the Battle! ${selectedFighter[0].name +' '+ fighterPoints +' Vs '+ oponentPoints +' '+selectedOponent[0].name} `)
 
         }else if(oponentPoints > fighterPoints && fighterPoints > 0){
 
-            alert(`${oponentPokemon.toUpperCase()} Won the Battle!  ${ oponentPoints +' Vs '+ fighterPoints }  `)
+            alert(`${oponentPokemon.toUpperCase()} Won the Battle!  ${selectedOponent[0].name +' '+oponentPoints +' Vs '+ fighterPoints +' '+ selectedFighter[0].name }  `)
 
         }else if(fighterPoints === 0 || oponentPoints === 0){
 
             alert('You need to select a Pokemon')
 
         }else{
-            alert( `Its a Tie'  ${fighterPoints +' Vs '+ oponentPoints}` )
+            alert( `Its a Tie'  ${selectedFighter[0].name +' '+ fighterPoints +' Vs '+oponentPoints +' '+selectedOponent[0].name}` )
         }
 
     }
@@ -103,7 +101,7 @@ export default function FightPage() {
         <SelectPokemon
             yourPokemon={yourPokemon}
             onChangePokemon={onChange}
-            data={data}
+            data={myPokedex}
         />
         <LogoVersus src={versus} alt="versus" />
         <SelectPokemon
