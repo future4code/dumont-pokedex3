@@ -1,7 +1,5 @@
-import React, { createContext } from 'react';
+import { createContext } from 'react';
 
+const ContextPokemons = createContext();
 
-const ContextPokemons = createContext()
-
-
-export default ContextPokemons
+export default ContextPokemons;
