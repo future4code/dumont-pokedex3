@@ -4,8 +4,6 @@ import ContextComponents from './Global/ContextComponent';
 
 
 function App() {
-
-
   return (
     <ContextComponents>
       <Router/>
